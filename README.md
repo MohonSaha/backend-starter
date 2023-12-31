@@ -1,6 +1,6 @@
-## Backend Starter By Mohon Saha
+# Backend Starter By Mohon Saha
 
-### How to use this repo:
+## How to use this repo:
 
 1. Clone the repo
    ```
@@ -15,7 +15,7 @@
    ```
 4.
 
-#### commands(script) details
+## Commands(script) details
 
 1. Run the server in developer mode
    ```
@@ -46,7 +46,7 @@
    npm run prettier:fix
    ```
 
-### How I have made it:
+## How I have made it:
 
 1. Install node modules
    ```
