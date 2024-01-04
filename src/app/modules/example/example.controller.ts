@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { UserService } from './example.service';
 import { UserValidations } from './example.validation';
 
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { user } = req.body;
 
@@ -17,16 +17,12 @@ const createUser = async (req: Request, res: Response) => {
       message: 'User created successfully',
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Somethign went wrong',
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-const getAllUsers = async (req: Request, res: Response) => {
+const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserService.getAllUsersFromDB();
     res.status(200).json({
@@ -34,16 +30,16 @@ const getAllUsers = async (req: Request, res: Response) => {
       message: 'User retrived successfully',
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Somethign went wrong',
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-const getSingleUsers = async (req: Request, res: Response) => {
+const getSingleUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const result = await UserService.getSingleUsersFromDB(id);
@@ -52,12 +48,8 @@ const getSingleUsers = async (req: Request, res: Response) => {
       message: 'Single User retrived successfully',
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Somethign went wrong',
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
