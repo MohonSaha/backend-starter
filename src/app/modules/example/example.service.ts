@@ -6,6 +6,18 @@ const createUserIntoDB = async (student: IUser) => {
   return result;
 };
 
+const getAllUsersFromDB = async () => {
+  const result = await User.find();
+  return result;
+};
+
+const getSingleUsersFromDB = async (_id: string) => {
+  const result = await User.find({ _id });
+  return result;
+};
+
 export const UserService = {
   createUserIntoDB,
+  getAllUsersFromDB,
+  getSingleUsersFromDB,
 };

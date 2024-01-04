@@ -4,7 +4,7 @@
 
 1. Clone the repo
    ```
-   git clone https://github.com/MohonSaha/backend-starter.git
+   git clone -b <last-branch> https://github.com/MohonSaha/backend-starter.git
    ```
 2. Delete .git file from the project
 3. Configure the .env file:
