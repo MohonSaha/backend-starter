@@ -13,7 +13,12 @@
     PORT=5000
     DATABASE_URL=mongodb+srv://<username>:<password>@cluster0.grqmol8.mongodb.net/<collectionName>?retryWrites=true&w=majority
    ```
-4.
+4. Chnage the mongodb username, password and collectionName
+5. Delete code details(.md) files.
+6. install all the node modules
+   ```
+   npm i
+   ```
 
 ## Commands(script) details
 
