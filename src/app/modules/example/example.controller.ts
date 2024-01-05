@@ -2,6 +2,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserService } from './example.service';
 import { UserValidations } from './example.validation';
+import sendResponse from '../../utils/sendResponse';
+import httpStatus from 'http-status';
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -9,10 +11,10 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 
     // validate data through zod
     const zodParsedData = UserValidations.userValidationSchema.parse(user);
-
     const result = await UserService.createUserIntoDB(zodParsedData);
 
-    res.status(200).json({
+    sendResponse(res, {
+      statusCode: httpStatus.CREATED,
       success: true,
       message: 'User created successfully',
       data: result,
@@ -25,7 +27,9 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserService.getAllUsersFromDB();
-    res.status(200).json({
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
       success: true,
       message: 'User retrived successfully',
       data: result,
@@ -43,7 +47,9 @@ const getSingleUsers = async (
   try {
     const id = req.params.id;
     const result = await UserService.getSingleUsersFromDB(id);
-    res.status(200).json({
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
       success: true,
       message: 'Single User retrived successfully',
       data: result,
